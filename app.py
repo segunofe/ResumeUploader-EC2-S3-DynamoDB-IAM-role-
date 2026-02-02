@@ -34,7 +34,7 @@ def upload():
         s3.upload_fileobj(resume, BUCKET_NAME, filename)  # Take this file object called resume and upload it to the bucket named BUCKET_NAME, and save it with the name filename.
                                                             # upload_fileobj is a method used to upload file-like objects, not a file path
         # Save to DynamoDB
-        table = dynamodb.Table(TABLE_NAME)  # is how your Python code knows which DynamoDB table to talk to.
+        table = dynamodb.Table(TABLE_NAME)  # is how your Python code knows which DynamoDB table to talk to. Since inside a database, you can have different tables
         
         # the below code shows that we used this "table" object to insert a new item (record) into your DynamoDB table — basically, it's saving applicant data.
         table.put_item(Item={
@@ -53,3 +53,4 @@ def upload():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
